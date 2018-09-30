@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import StudentDetails from './pages/StudentDetails';
-import ApplicationHeader from './components/ApplicationHeader';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import StudentDetails from "./pages/StudentDetails";
+import ApplicationHeader from "./components/ApplicationHeader";
+import ResponsiveDrawer from "./test/ResponsiveDrawer";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <ApplicationHeader/>
-        <StudentDetails/>
+        {/* <ApplicationHeader/>
+        <StudentDetails/> */}
+        <ResponsiveDrawer />
       </div>
       // <div className="App">
       //   <header className="App-header">
