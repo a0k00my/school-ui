@@ -19,6 +19,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { mailFolderListItems, otherMailFolderListItems } from "./titleData";
 import StudentDetails from "../pages/StudentDetails";
 import Test from "./Test";
+import Payments from "../pages/Payments";
 
 const drawerWidth = 240;
 
@@ -61,15 +62,30 @@ const styles = theme => ({
 class ResponsiveDrawer extends React.Component {
   state = {
     mobileOpen: false,
-    studentDetail: false
+    studentDetail: false,
+    paymentsDetails: false
   };
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
-  handleClick = () => {
-    this.setState(state => ({ studentDetail: !state.studentDetail }));
+  handleStudentDetailsClick = () => {
+    this.setState(state => ({ studentDetail: true }));
+    this.setState(state => ({ paymentsDetails: false }));
+    this.handleDrawerToggle();
+  };
+
+  handlePaymentsClick = () => {
+    this.setState(state => ({ studentDetail: false }));
+    this.setState(state => ({ paymentsDetails: true }));
+    this.handleDrawerToggle();
+  };
+
+  handleHomeClick = () => {
+    this.setState(state => ({ studentDetail: false }));
+    this.setState(state => ({ paymentsDetails: false }));
+    this.handleDrawerToggle();
   };
 
   render() {
@@ -79,13 +95,19 @@ class ResponsiveDrawer extends React.Component {
       <div>
         <div className={classes.toolbar} />
         <Divider />
-        <ListItem button onClick={this.handleClick}>
+        <ListItem button onClick={this.handleHomeClick}>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button onClick={this.handleStudentDetailsClick}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Addmision" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={this.handlePaymentsClick}>
           <ListItemIcon>
             <StarIcon />
           </ListItemIcon>
@@ -143,8 +165,11 @@ class ResponsiveDrawer extends React.Component {
         </Hidden>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {this.state.studentDetail ? <StudentDetails /> : <Test />}
-          {/* <StudentDetails /> */}
+          {!this.state.studentDetail && !this.state.paymentsDetails ? (
+            <Test />
+          ) : null}
+          {this.state.studentDetail ? <StudentDetails /> : null}
+          {this.state.paymentsDetails ? <Payments /> : null}
         </main>
       </div>
     );
