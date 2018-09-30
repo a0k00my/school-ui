@@ -33,18 +33,29 @@ function AddressForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            id="fathersName"
+            name="fathersName"
+            label="Father's name"
             fullWidth
             autoComplete="billing address-line1"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="addiress2"
-            name="addiress2"
-            label="Address line 2"
+          required
+            id="mothersName"
+            name="mothersName"
+            label="Mother's name"
+            fullWidth
+            autoComplete="billing address-line2"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+          required
+            id="address"
+            name="address"
+            label="Address"
             fullWidth
             autoComplete="billing address-line2"
           />
@@ -92,7 +103,7 @@ function AddressForm() {
             required
             id="zip"
             name="zip"
-            label="Zip / Postal code"
+            label="Phone number"
             fullWidth
             autoComplete="billing postal-code"
           />
@@ -102,7 +113,7 @@ function AddressForm() {
             required
             id="country"
             name="country"
-            label="Country"
+            label="Alternate phone number"
             fullWidth
             autoComplete="billing country"
           />
@@ -112,7 +123,7 @@ function AddressForm() {
             required
             id="zip"
             name="zip"
-            label="Zip / Postal code"
+            label="Class"
             fullWidth
             autoComplete="billing postal-code"
           />
@@ -122,7 +133,7 @@ function AddressForm() {
             required
             id="country"
             name="country"
-            label="Country"
+            label="Age"
             fullWidth
             autoComplete="billing country"
           />
@@ -132,7 +143,7 @@ function AddressForm() {
             control={
               <Checkbox color="secondary" name="saveAddress" value="yes" />
             }
-            label="Use this address for payment details"
+            label="All the details are correct ?"
           />
         </Grid>
       </Grid>
