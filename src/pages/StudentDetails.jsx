@@ -1,4 +1,3 @@
-
 import React from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -7,6 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AddressForm from "./AddressForm";
+import axios from "axios";
 
 const styles = theme => ({
   layout: {
@@ -40,10 +40,17 @@ class StudentDetails extends React.Component {
     activeStep: 0
   };
 
-  handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1
-    }));
+  addStudent = student => {
+    console.log("[ADD = ]", student);
+    const url = "http://localhost:9001/customers";
+    axios.post(url, student).then(
+      () => {
+        alert("Saved..");
+      },
+      error => {
+        console.log("Error");
+      }
+    );
   };
 
   render() {
@@ -59,18 +66,7 @@ class StudentDetails extends React.Component {
               Student Details
             </Typography>
             <React.Fragment>
-              <React.Fragment>
-                <AddressForm />
-                <div className={classes.buttons}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleNext}
-                  >
-                    SAVE
-                  </Button>
-                </div>
-              </React.Fragment>
+              <AddressForm saved={this.addStudent} />
             </React.Fragment>
           </Paper>
         </main>
